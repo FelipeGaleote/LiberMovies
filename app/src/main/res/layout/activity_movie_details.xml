@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/primaryLightColor">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/movie_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="3"
+                        android:ellipsize="end"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryTextColor"
+                        android:textAlignment="center"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="The Lion King"/>
+
+                <ImageView
+                        android:id="@+id/movie_banner"
+                        android:layout_marginStart="16dp"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="16dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintTop_toBottomOf="@id/movie_title"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                        android:id="@+id/movie_duration_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/secondaryTextColor"
+                        app:layout_constraintTop_toTopOf="@id/movie_banner"
+                        app:layout_constraintStart_toEndOf="@id/movie_banner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:text="@string/duration"/>
+
+                <TextView
+                        android:id="@+id/movie_duration"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textColor="@color/secondaryTextColor"
+                        app:layout_constraintTop_toBottomOf="@id/movie_duration_label"
+                        app:layout_constraintStart_toEndOf="@id/movie_banner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="91 min"/>
+
+                <TextView
+                        android:id="@+id/movie_imdb_rating_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/secondaryTextColor"
+                        app:layout_constraintTop_toBottomOf="@id/movie_duration"
+                        app:layout_constraintStart_toEndOf="@id/movie_banner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:text="@string/imdb_rating"/>
+
+                <TextView
+                        android:id="@+id/movie_imdb_rating"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textColor="@color/secondaryTextColor"
+                        app:layout_constraintTop_toBottomOf="@id/movie_imdb_rating_label"
+                        app:layout_constraintStart_toEndOf="@id/movie_banner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="6.1"/>
+
+                <TextView
+                        android:id="@+id/movie_language_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/secondaryTextColor"
+                        app:layout_constraintTop_toBottomOf="@id/movie_imdb_rating"
+                        app:layout_constraintStart_toEndOf="@id/movie_banner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:text="@string/languages"/>
+
+                <TextView
+                        android:id="@+id/movie_language"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textColor="@color/secondaryTextColor"
+                        app:layout_constraintTop_toBottomOf="@id/movie_language_label"
+                        app:layout_constraintStart_toEndOf="@id/movie_banner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="English"/>
+
+                <TextView
+                        android:id="@+id/movie_year_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/secondaryTextColor"
+                        app:layout_constraintTop_toBottomOf="@id/movie_language"
+                        app:layout_constraintStart_toEndOf="@id/movie_banner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:text="@string/year"/>
+
+                <TextView
+                        android:id="@+id/movie_year"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textColor="@color/secondaryTextColor"
+                        app:layout_constraintTop_toBottomOf="@id/movie_year_label"
+                        app:layout_constraintStart_toEndOf="@id/movie_banner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="2009"/>
+
+                <TextView
+                        android:id="@+id/movie_plot"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:ellipsize="end"
+                        android:textSize="16sp"
+                        android:textColor="@color/secondaryTextColor"
+                        app:layout_constraintTop_toBottomOf="@id/movie_banner"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="A young lion prince is cast out of his pride by his cruel uncle, who claims he killed his father. While the uncle rules with an iron paw, the prince grows up beyond the Savannah, living by a philosophy: No worries for the rest of your days. But when his past comes to haunt him, the young prince must decide his fate: Will he remain an outcast or face his demons and become what he needs to be?"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+</layout>

@@ -11,7 +11,11 @@ import com.example.libermovies.R
 import com.example.libermovies.model.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 
-class ListMoviesAdapter(private var context: Context) : RecyclerView.Adapter<ListMoviesAdapter.ListMoviesHolder>() {
+class ListMoviesAdapter(private var context: Context, private val movieClickedListener: MovieClickedListener) : RecyclerView.Adapter<ListMoviesAdapter.ListMoviesHolder>() {
+
+    interface MovieClickedListener {
+        fun movieClicked(imdbId : String)
+    }
 
     var movies : ArrayList<Movie> = ArrayList()
     var searchedText : String = ""
@@ -50,6 +54,7 @@ class ListMoviesAdapter(private var context: Context) : RecyclerView.Adapter<Lis
             .load(movie.posterUrl)
             .apply(RequestOptions().placeholder(R.drawable.ic_movie))
             .into(holder.banner)
+        holder.itemMovie.setOnClickListener { view -> movieClickedListener.movieClicked(movie.imdbId) }
     }
 
 
@@ -57,5 +62,6 @@ class ListMoviesAdapter(private var context: Context) : RecyclerView.Adapter<Lis
         var title = itemView.movie_title
         var year = itemView.movie_year
         var banner = itemView.movie_banner
+        var itemMovie = itemView.item_movie
     }
 }

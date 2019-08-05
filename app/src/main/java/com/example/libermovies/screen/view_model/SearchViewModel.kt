@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.libermovies.model.Movie
 import com.example.libermovies.repository.MoviesRepository
+import com.example.libermovies.repository.result.MoviesSearchResult
 
 class SearchViewModel : ViewModel() {
 
@@ -23,7 +24,7 @@ class SearchViewModel : ViewModel() {
                 .doOnError { throwable ->
                     throwable.printStackTrace()
                 }
-                .subscribe { moviesSearchResult ->
+                .subscribe({ moviesSearchResult ->
                     if (moviesSearchResult.response != "False") {
                         searchMetadata =
                             SearchMetadata(title, pageIndex.toInt(), moviesSearchResult.totalResults.toInt())
@@ -32,20 +33,26 @@ class SearchViewModel : ViewModel() {
                         moviesResponse.value = MoviesResponse(ArrayList(), title)
                         searchMetadata = SearchMetadata(title, 0, 0)
                     }
-                }
+                }, { error ->
+                    error.printStackTrace()
+                })
         } else if (searchMetadata.hasNextMoviesPages()) {
             val moviesRepository = MoviesRepository()
             moviesRepository.searchMovies(title, searchMetadata.nextPageIndex())
                 .doOnError { throwable ->
                     throwable.printStackTrace()
                 }
-                .subscribe { moviesSearchResult ->
-                    if (moviesSearchResult.response != "False") {
-                        moviesResponse.value = MoviesResponse(moviesSearchResult.movies, title)
-                    } else {
-                        moviesResponse.value = MoviesResponse(ArrayList(), title)
+                .subscribe(
+                    { moviesSearchResult ->
+                        if (moviesSearchResult.response != "False") {
+                            moviesResponse.value = MoviesResponse(moviesSearchResult.movies, title)
+                        } else {
+                            moviesResponse.value = MoviesResponse(ArrayList(), title)
+                        }
+                    }, { error ->
+                        error.printStackTrace()
                     }
-                }
+                )
         }
     }
 

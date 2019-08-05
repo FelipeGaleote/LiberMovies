@@ -11,6 +11,7 @@
         app:cardCornerRadius="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_movie"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -25,7 +26,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:scaleType="centerCrop"
-                android:src="@color/colorAccent"
                 android:contentDescription="@string/banner_of_the_movie"/>
 
         <TextView

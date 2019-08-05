@@ -1,5 +1,6 @@
 package com.example.libermovies.screen.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -15,7 +16,7 @@ import com.example.libermovies.screen.adapter.ListMoviesAdapter
 import com.example.libermovies.screen.listener.LazyScrollListener
 import com.example.libermovies.screen.view_model.SearchViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ListMoviesAdapter.MovieClickedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var searchViewModel: SearchViewModel
@@ -29,11 +30,15 @@ class MainActivity : AppCompatActivity() {
 
         setupRecycler()
         setupSearchBar()
+
+        searchViewModel.moviesResponse.observe(this, Observer { moviesResponse ->
+            adapter.setNewMovies(moviesResponse.movies, moviesResponse.searchedText)
+        })
     }
 
     fun setupRecycler() {
         binding.moviesRecyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ListMoviesAdapter(this)
+        adapter = ListMoviesAdapter(this, this)
         binding.moviesRecyclerView.addOnScrollListener(object :
             LazyScrollListener(binding.moviesRecyclerView.layoutManager as LinearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int): Boolean {
@@ -71,9 +76,11 @@ class MainActivity : AppCompatActivity() {
             binding.searchBar.setText("")
             adapter.clear()
         }
+    }
 
-        searchViewModel.moviesResponse.observe(this, Observer { moviesResponse ->
-            adapter.setNewMovies(moviesResponse.movies, moviesResponse.searchedText)
-        })
+    override fun movieClicked(imdbId: String) {
+        val intent = Intent(this, MovieDetailsActivity::class.java)
+        intent.putExtra(MovieDetailsActivity.IMDB_ID_KEY, imdbId)
+        startActivity(intent)
     }
 }

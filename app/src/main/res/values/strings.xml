@@ -3,4 +3,8 @@
     <string name="search_movies">Pesquisar filmes</string>
     <string name="banner_of_the_movie">Banner do filme</string>
     <string name="launching_date">Data de lançamento:</string>
+    <string name="duration">Duração</string>
+    <string name="imdb_rating">Pontuação no imdb</string>
+    <string name="languages">Idiomas</string>
+    <string name="year">Ano</string>
 </resources>
